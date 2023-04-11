@@ -15,6 +15,11 @@ public class TankController : NetworkBehaviour
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CmdFire();
+        }
     }
 
     public override void OnStartLocalPlayer()
@@ -33,7 +38,7 @@ public class TankController : NetworkBehaviour
             bulletSpawn.position,
             bulletSpawn.rotation);
  
-        NetworkServer.Spawn (bullet);
+        NetworkServer.Spawn(bullet);
  
         Destroy (bullet, 2.0f);
     }
